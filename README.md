@@ -23,7 +23,7 @@ It also tells you what to skip, and why — lockfiles, generated folders, binari
 Once it is live at its own address, take any GitHub repo URL and swap the domain:
 
 ```
-github.com/parthsingh03/AirGap  →  trailhead.pages.dev/parthsingh03/AirGap
+github.com/parthsingh03/AirGap  →  parthsingh03.github.io/TrailHead/parthsingh03/AirGap
 ```
 
 ## How it works
