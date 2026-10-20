@@ -6,6 +6,8 @@ Open a big codebase and the first question is always the same: where do I even s
 
 It also tells you what to skip, and why — lockfiles, generated folders, binaries and assets that eat reading time without teaching you anything.
 
+**Try it live:** https://parthsingh03.github.io/TrailHead/ — paste a repo there, or use the URL swap described below on any public repo.
+
 ## What you get
 
 - The trail: a step-by-step reading order with a reason on every step
