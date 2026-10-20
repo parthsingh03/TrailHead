@@ -20,7 +20,7 @@ It also tells you what to skip, and why — lockfiles, generated folders, binari
 
 ## The URL swap
 
-Once it is live at its own address, take any GitHub repo URL and swap the domain:
+Take any GitHub repo URL and swap the domain:
 
 ```
 github.com/parthsingh03/AirGap  →  parthsingh03.github.io/TrailHead/parthsingh03/AirGap
