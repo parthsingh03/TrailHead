@@ -9,7 +9,7 @@
   (function () {
     var parts = location.pathname.split('/').filter(Boolean);
     var base = '';
-    if (parts.length && parts[0].toLowerCase() === 'trailhead') { base = '/trailhead'; parts.shift(); }
+    if (parts.length && parts[0].toLowerCase() === 'trailhead') { base = '/' + parts[0]; parts.shift(); }
     var target = base + '/?p=' + parts.map(encodeURIComponent).join('/');
     location.replace(target);
   })();
