@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TrailHead — finding your trail…</title>
+<script>
+  /* SPA fallback for static hosts without rewrites (e.g. GitHub Pages):
+     /trailhead/owner/repo -> /trailhead/?p=owner/repo */
+  (function () {
+    var parts = location.pathname.split('/').filter(Boolean);
+    var base = '';
+    if (parts.length && parts[0].toLowerCase() === 'trailhead') { base = '/trailhead'; parts.shift(); }
+    var target = base + '/?p=' + parts.map(encodeURIComponent).join('/');
+    location.replace(target);
+  })();
+</script>
+</head>
+<body><p>Finding your trail…</p></body>
+</html>

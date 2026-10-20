@@ -1,0 +1,108 @@
+/* TrailHead — trail-map paper look: off-white map paper, ink, one orange trail line */
+:root {
+  --paper: #faf6ec;
+  --ink: #1d2417;
+  --muted: #5d6650;
+  --line: #d9d2ba;
+  --trail: #e4572e;
+  --trail-soft: #fdeee7;
+  --card: #fffdf6;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.topbar {
+  display: flex; gap: 14px; align-items: baseline; padding: 16px 22px;
+  border-bottom: 3px solid var(--ink); background: var(--paper);
+}
+.brand { font-family: var(--mono); font-weight: 800; font-size: 22px; color: var(--ink); text-decoration: none; }
+.tag { color: var(--muted); font-family: var(--mono); font-size: 13px; }
+main { max-width: 880px; margin: 0 auto; padding: 34px 20px 60px; }
+h1 { font-size: 34px; line-height: 1.15; margin: 0 0 14px; }
+h2 { font-size: 22px; margin: 38px 0 10px; border-bottom: 2px dashed var(--trail); padding-bottom: 6px; }
+.lede { font-size: 17px; line-height: 1.55; color: #333b28; }
+.fine { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+.meta { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.ask { display: flex; gap: 10px; margin: 24px 0 8px; flex-wrap: wrap; }
+.ask input {
+  flex: 1 1 320px; font-family: var(--mono); font-size: 16px; padding: 13px 14px;
+  border: 2.5px solid var(--ink); border-radius: 8px; background: var(--card);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+button {
+  font-family: var(--mono); font-size: 14px; font-weight: 700; cursor: pointer;
+  border: 2.5px solid var(--ink); border-radius: 8px; background: var(--card);
+  padding: 10px 16px; box-shadow: 3px 3px 0 var(--ink);
+}
+button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+#go { background: var(--trail); color: #fff; font-size: 16px; }
+.error { background: #fde8e0; border: 2px solid var(--trail); border-radius: 8px; padding: 10px 14px; font-family: var(--mono); font-size: 14px; }
+.examples { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 16px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.example { box-shadow: none; padding: 6px 10px; font-size: 13px; }
+.swap-tip { margin-top: 42px; border: 2.5px solid var(--ink); border-radius: 10px; background: var(--card); padding: 6px 22px 18px; box-shadow: 5px 5px 0 var(--ink); }
+.swap-tip h2 { border: none; margin-top: 16px; }
+.swap { display: block; font-family: var(--mono); font-size: 14.5px; background: var(--trail-soft); padding: 12px; border-radius: 6px; overflow-x: auto; white-space: nowrap; }
+.spinner {
+  width: 42px; height: 42px; border-radius: 50%; margin: 60px auto 16px;
+  border: 5px dashed var(--trail); animation: spin 1.1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading p { text-align: center; font-family: var(--mono); }
+.stack { display: inline-block; font-family: var(--mono); font-size: 12px; border: 2px solid var(--ink); border-radius: 20px; padding: 3px 10px; margin: 0 6px 6px 0; background: var(--trail-soft); }
+.stack.lang { background: var(--card); }
+.controls { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 22px 0 12px; }
+.modes button.on, .exports button:hover { background: var(--trail); color: #fff; }
+.progress-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-family: var(--mono); font-size: 13px; }
+.progress-bar { flex: 1 1 220px; height: 14px; border: 2px solid var(--ink); border-radius: 8px; background: var(--card); overflow: hidden; }
+#progress-fill { height: 100%; width: 0; background: var(--trail); transition: width .3s; }
+.trail { list-style: none; margin: 0; padding: 0; position: relative; }
+.trail::before { content: ''; position: absolute; left: 21px; top: 8px; bottom: 8px; border-left: 3px dashed var(--trail); }
+.chapter { font-family: var(--mono); font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 20px 0 8px 52px; }
+.step {
+  display: flex; gap: 12px; background: var(--card); border: 2.5px solid var(--ink);
+  border-radius: 10px; padding: 13px 16px; margin: 0 0 12px 52px; position: relative;
+  box-shadow: 3px 3px 0 rgba(29,36,23,.85);
+}
+.step.done { opacity: .55; }
+.step.done .path { text-decoration: line-through; }
+.tick { position: absolute; left: -52px; top: 14px; }
+.tick input { display: none; }
+.tick .box {
+  display: block; width: 26px; height: 26px; border-radius: 50%;
+  border: 3px solid var(--trail); background: var(--paper); cursor: pointer; position: relative; z-index: 1;
+}
+.tick input:checked + .box { background: var(--trail); }
+.step-top { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.num { font-family: var(--mono); font-weight: 800; color: var(--trail); font-size: 15px; }
+.path { font-family: var(--mono); font-size: 14.5px; font-weight: 700; color: var(--ink); word-break: break-all; }
+.badge { font-family: var(--mono); font-size: 10.5px; font-weight: 800; border: 2px solid var(--ink); border-radius: 4px; padding: 1px 6px; }
+.badge.start { background: #ffe066; }
+.badge.entry { background: var(--trail); color: #fff; }
+.badge.hub { background: #d3f9d8; }
+.badge.test { background: #e7e5e4; }
+.badge.cfg { background: #dbeafe; }
+.why { margin: 6px 0 4px; font-size: 14.5px; line-height: 1.5; }
+.step .meta { margin: 0; }
+.graph-wrap { border: 2.5px solid var(--ink); border-radius: 10px; background: var(--card); overflow-x: auto; box-shadow: 4px 4px 0 var(--ink); }
+#graph { display: block; min-width: 100%; }
+#graph .edge { stroke: var(--trail); stroke-width: 1.6; stroke-dasharray: 4 3; }
+#graph .node { cursor: pointer; }
+#graph .node rect { fill: var(--trail-soft); stroke: var(--ink); stroke-width: 1.6; }
+#graph .node text { font-family: var(--mono); font-size: 11.5px; fill: var(--ink); }
+#graph .empty { font-family: var(--mono); font-size: 13px; fill: var(--muted); }
+.skips { font-size: 13.5px; line-height: 1.7; padding-left: 18px; }
+.skips code { font-family: var(--mono); font-size: 12.5px; }
+footer { border-top: 3px solid var(--ink); padding: 18px 22px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); background: var(--paper); }
+@media (max-width: 560px) {
+  h1 { font-size: 26px; }
+  .step { margin-left: 40px; }
+  .tick { left: -42px; }
+  .trail::before { left: 15px; }
+}

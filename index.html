@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrailHead — find the reading path through any repo</title>
+<meta name="description" content="Paste a public GitHub repo and get the order to read it in — README first, entry point, core modules, tests last — built from the real import graph. Plus the skip list.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">🧭 TrailHead</a>
+  <span class="tag">read any repo in the right order</span>
+</header>
+
+<main>
+  <!-- landing -->
+  <section id="landing">
+    <h1>Every repo has a trail.<br>Most people start at a random tree.</h1>
+    <p class="lede">Open a big codebase and the first question is always the same:
+      <em>where do I even start?</em> TrailHead answers it — paste a public GitHub repo and get a
+      numbered reading path built from the repo's real import graph: README first, the entry point,
+      the modules it actually pulls in, foundations before dependents, tests last. And an honest
+      list of what to skip.</p>
+    <div class="ask">
+      <input id="repo-input" type="text" placeholder="owner/repo or a github.com URL" autocomplete="off" spellcheck="false">
+      <button id="go">Find the trail →</button>
+    </div>
+    <p id="error" class="error" hidden></p>
+    <div class="examples">
+      <span>Try:</span>
+      <button class="example" data-repo="parthsingh03/AirGap">parthsingh03/AirGap</button>
+      <button class="example" data-repo="parthsingh03/GridPulse">parthsingh03/GridPulse</button>
+      <button class="example" data-repo="parthsingh03/INDEX">parthsingh03/INDEX</button>
+    </div>
+    <div class="swap-tip">
+      <h2>The URL swap</h2>
+      <p>Once TrailHead lives at its own address, it works like this — take any GitHub repo URL
+        and swap the domain:</p>
+      <code class="swap">github.com/parthsingh03/AirGap &nbsp;→&nbsp; <b>trailhead.pages.dev</b>/parthsingh03/AirGap</code>
+      <p class="fine">No sign-up, no AI guessing — the order comes from imports, entry points and
+        file links measured in the repo itself. Public repos only for now.</p>
+    </div>
+  </section>
+
+  <!-- loading -->
+  <section id="loading" hidden>
+    <div class="spinner"></div>
+    <p id="load-msg">Fetching the repo…</p>
+  </section>
+
+  <!-- result -->
+  <section id="result" hidden>
+    <h1 id="repo-title"></h1>
+    <p id="repo-desc" class="lede"></p>
+    <p id="repo-meta" class="meta"></p>
+    <p id="stack-badges"></p>
+    <p id="capped-note" class="fine"></p>
+
+    <div class="controls">
+      <div class="modes">
+        <button id="mode-sprint">⚡ Sprint — the essential 10</button>
+        <button id="mode-full">🥾 Full trail</button>
+      </div>
+      <div class="exports">
+        <button id="export-md">Export checklist (.md)</button>
+        <button id="export-tour">Export CodeTour (.tour)</button>
+        <button id="reset-progress">Reset ticks</button>
+      </div>
+    </div>
+    <div class="progress-row">
+      <div class="progress-bar"><div id="progress-fill"></div></div>
+      <span id="progress-label"></span>
+      <span id="time-label" class="meta"></span>
+    </div>
+
+    <h2>The trail</h2>
+    <ol id="trail" class="trail"></ol>
+
+    <h2>Who uses whom</h2>
+    <p class="fine">Each box is a source file; lines run from a file to the files it uses. Click a box to jump to its step on the trail.</p>
+    <div class="graph-wrap"><svg id="graph"></svg></div>
+
+    <h2>The skip list (<span id="skip-count"></span>)</h2>
+    <p class="fine">Files you can safely not read — knowing what to skip is half the trail.</p>
+    <ul id="skip-list" class="skips"></ul>
+  </section>
+</main>
+
+<footer>
+  <p>TrailHead — a small tool for reading codebases in the right order. Built from the import graph, not from guesses.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
